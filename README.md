@@ -1,51 +1,11 @@
-# okno-website
+# Okno
 
-Site de divulgação do Okno, um app de hábitos. Feito com Vite, GSAP (ScrollTrigger e SplitText), Lenis e Three.js.
+Site de divulgação do Okno, um app de hábitos.
 
-## Rodar
+## Desktop
 
-```bash
-npm install
-npm run dev      # servidor local
-npm run build    # gera a pasta dist/
-npm run preview  # serve a pasta dist/
-```
+<!-- Vídeo do desktop: arraste o arquivo .mp4 para esta linha no editor do GitHub -->
 
-## Estrutura
+## Celular
 
-```
-index.html              página principal
-pages/                  páginas de texto (o endereço não leva "pages")
-  privacidade/          /privacidade/
-  termos/               /termos/
-  excluir-conta/        /excluir-conta/
-public/                 logos (preto e branco)
-vite.config.js          lista as páginas e tira "pages" do endereço delas
-
-src/
-  main.js               ponto de entrada: liga o scroll suave e chama cada parte
-  scripts/
-    intro.js            abertura: celular girando, zoom e entrada no site
-    day.js              "Um dia com o Okno": relógio e avisos guiados pelo scroll
-    sections.js         títulos, faixa de hábitos, parallax, entradas, passos 2 e 3, dúvidas
-  three/                o 3D, carregado à parte e só se o navegador tiver WebGL
-    phone.js            o modelo do celular e suas medidas
-    room.js             a sala escura da abertura
-    intro-phone.js      cena da abertura e a tela com o topo do site
-    day-phone.js        cena de "Um dia" e a tela de bloqueio
-  styles/
-    index.css           junta os arquivos da página principal, na ordem certa
-    legal.css           páginas de texto (importa só base, menu, blocos e rodapé)
-    base.css            cores, fontes, reset, botão
-    nav.css  footer.css  blocks.css
-    intro.css           abertura e o celular em CSS (reserva sem WebGL)
-    widget.css          os widgets desenhados
-    lock.css            celular bloqueado e notificação
-    sections/           um arquivo por seção da página
-```
-
-## Como as peças se encaixam
-
-- Sem JavaScript ou com "reduzir movimento" ligado, o site é só HTML e CSS: a abertura some e a página começa no topo.
-- Com WebGL, o celular é o modelo 3D. O celular em HTML continua existindo, invisível: o GSAP anima ele, e o 3D copia essas transformações a cada quadro.
-- Sem WebGL, aparece o celular em CSS com o céu de estrelas.
+<!-- Vídeo do celular: arraste o arquivo .mp4 para esta linha no editor do GitHub -->
