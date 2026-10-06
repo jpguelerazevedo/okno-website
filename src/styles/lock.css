@@ -1,0 +1,133 @@
+/* ---------- celular bloqueado e notificação: usados no passo 2 e em "um dia" ---------- */
+
+.lock {
+  --pw: clamp(250px, 23vw, 330px);
+  position: absolute;
+  top: 11%;
+  left: 50%;
+  width: var(--pw);
+  height: calc(var(--pw) * 2.095);
+  margin-left: calc(var(--pw) / -2);
+  padding: calc(var(--pw) * 0.028);
+  border-radius: calc(var(--pw) * 0.155);
+  background: #000;
+  box-shadow:
+    inset 0 0 0 1.5px #4a4a4a,
+    0 0 0 1px #1a1a1a,
+    0 40px 80px -30px rgb(0 0 0 / 0.45);
+  will-change: transform;
+}
+
+.lock__screen {
+  position: relative;
+  height: 100%;
+  padding: calc(var(--pw) * 0.2) calc(var(--pw) * 0.04) 0;
+  border-radius: calc(var(--pw) * 0.127);
+  background: linear-gradient(170deg, #303030, #0b0b0b 62%);
+  color: var(--paper);
+  text-align: center;
+  overflow: hidden;
+}
+
+.lock__island {
+  position: absolute;
+  top: calc(var(--pw) * 0.03);
+  left: 50%;
+  width: calc(var(--pw) * 0.29);
+  height: calc(var(--pw) * 0.084);
+  margin-left: calc(var(--pw) * -0.145);
+  border-radius: 999px;
+  background: #000;
+}
+
+.lock .lock__date {
+  color: rgb(255 255 255 / 0.75);
+  font-size: calc(var(--pw) * 0.055);
+}
+
+.lock .lock__time {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: calc(var(--pw) * 0.31);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+  color: var(--paper);
+}
+
+.lock .alert {
+  margin-top: calc(var(--pw) * 0.05);
+  gap: 10px;
+  padding: 10px 14px 10px 10px;
+  border-radius: calc(var(--pw) * 0.075);
+  text-align: left;
+  will-change: transform;
+}
+
+.lock .alert img {
+  width: 38px;
+  height: 38px;
+  padding: 8px;
+  border-radius: 11px;
+}
+
+.lock .alert b {
+  font-size: 15px;
+}
+
+.lock .alert span {
+  display: block;
+  font-size: 13px;
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px 14px 14px;
+  line-height: 1.3;
+}
+
+.alert img {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 9px;
+  border-radius: 13px;
+  background: var(--ink);
+}
+
+.alert b {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--display);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.alert small {
+  font-family: var(--body);
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--gray);
+}
+
+.alert div {
+  flex: 1;
+}
+
+.alert span {
+  color: var(--gray);
+  font-size: 15px;
+}
+
+.alert--small {
+  display: inline-flex;
+  width: auto;
+  border-radius: 22px;
+}
+
+.alert--small > span {
+  display: grid;
+}

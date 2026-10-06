@@ -1,0 +1,18 @@
+/* Página principal. A ordem importa: base primeiro, seções na ordem da página. */
+
+@import './base.css';
+@import './nav.css';
+@import './intro.css';
+@import './blocks.css';
+@import './widget.css';
+@import './sections/ticker.css';
+@import './sections/name.css';
+@import './sections/how.css';
+@import './lock.css';
+@import './sections/widgets.css';
+@import './sections/day.css';
+@import './sections/extras.css';
+@import './sections/plans.css';
+@import './sections/faq.css';
+@import './sections/closing.css';
+@import './footer.css';

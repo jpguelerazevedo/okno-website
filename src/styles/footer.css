@@ -1,0 +1,47 @@
+/* ---------- rodapé ---------- */
+
+.footer {
+  padding: 32px var(--gutter) 40px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--gray);
+}
+
+.footer__grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 40px;
+}
+
+.footer .nav__brand {
+  color: var(--ink);
+}
+
+.footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin-inline: auto;
+}
+
+.footer nav a {
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer nav a:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 820px) {
+  .footer nav {
+    margin-inline: 0;
+    width: 100%;
+    order: 3;
+  }
+
+  .footer__grid > p {
+    margin-left: auto;
+  }
+}

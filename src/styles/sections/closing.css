@@ -1,0 +1,26 @@
+/* ---------- fechamento ---------- */
+
+.closing {
+  padding: clamp(96px, 14vw, 220px) var(--gutter) clamp(96px, 14vw, 200px);
+  text-align: center;
+}
+
+.closing__line {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(44px, 8.4vw, 140px);
+  letter-spacing: -0.045em;
+  line-height: 0.94;
+}
+
+.closing__actions {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  margin-top: clamp(36px, 5vw, 72px);
+}
+
+.closing__actions p {
+  color: var(--gray);
+  max-width: 36ch;
+}

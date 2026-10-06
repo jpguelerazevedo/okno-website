@@ -1,0 +1,72 @@
+/* ---------- planos ---------- */
+
+.plans__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.4vw, 20px);
+}
+
+.plan {
+  padding: clamp(28px, 3.6vw, 56px);
+}
+
+.plan .plan__price {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(52px, 6.4vw, 100px);
+  letter-spacing: -0.045em;
+  line-height: 1;
+  margin-top: clamp(24px, 3.4vw, 48px);
+  color: var(--ink);
+}
+
+.plan__price span {
+  display: block;
+  font-family: var(--body);
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 1.4;
+  color: var(--gray);
+  margin-top: 12px;
+}
+
+.plan ul {
+  margin-top: clamp(28px, 3vw, 44px);
+}
+
+.plan li {
+  padding-block: 12px;
+  border-top: 1px solid #dedede;
+}
+
+.plan.plan--pro {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.plan--pro .plan__price {
+  color: var(--paper);
+}
+
+.plan--pro p,
+.plan--pro .plan__price span {
+  color: #9a9a9a;
+}
+
+.plan--pro li {
+  border-top-color: #2c2c2c;
+}
+
+.plans__note {
+  margin: clamp(28px, 3.6vw, 48px) auto 0;
+  color: var(--gray);
+  max-width: 56ch;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .plans__grid {
+    grid-template-columns: 1fr;
+  }
+}

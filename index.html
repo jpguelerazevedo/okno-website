@@ -15,24 +15,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Funnel+Sans:wght@300..800&display=swap" rel="stylesheet">
 <script>
   // A abertura com o celular só existe com JS e sem "reduzir movimento".
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('motion');
+    // Com WebGL o celular é o 3D: marca já aqui, pra o celular em CSS não piscar enquanto o 3D carrega.
+    if (document.createElement('canvas').getContext('webgl2')) document.documentElement.classList.add('gl');
+  }
 </script>
-<link rel="stylesheet" href="/src/style.css">
+<link rel="stylesheet" href="/src/styles/index.css">
 </head>
 <body>
 
 <header class="nav">
-  <a class="nav__brand" href="#topo" aria-label="Okno, voltar ao início">
-    <img src="/okno-check-x-preto.svg" alt="" width="28" height="28">
-    <span>okno</span>
-  </a>
-  <nav class="nav__links" aria-label="Seções">
-    <a href="#como">Como funciona</a>
-    <a href="#widgets">Widgets</a>
-    <a href="#planos">Planos</a>
-    <a href="#duvidas">Dúvidas</a>
-  </nav>
-  <a class="btn btn--small" href="https://okno-efb22.web.app/app">Entrar na web</a>
+  <div class="nav__pill">
+    <a class="nav__brand" href="#topo" aria-label="Okno, voltar ao início">
+      <img src="/okno-check-x-preto.svg" alt="" width="26" height="26">
+      <span>okno</span>
+    </a>
+    <nav class="nav__links" aria-label="Seções">
+      <a href="#como">Como funciona</a>
+      <a href="#widgets">Widgets</a>
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="btn btn--small" href="https://okno-efb22.web.app/app">Entrar na web</a>
+  </div>
 </header>
 
 <main>
@@ -47,12 +53,13 @@
           <p class="hero__lead">O Okno mostra no widget só o que importa agora. Você marca com um toque, sem abrir o app, e cada hábito aparece no horário que você escolheu.</p>
           <div class="hero__actions">
             <a class="btn" href="https://okno-efb22.web.app/app">Entrar na web</a>
-            <p class="hero__stores">Android em breve no Google Play.<br>iPhone logo depois.</p>
+            <p class="hero__stores">Disponível na Google Play<br>e na Apple Store.</p>
           </div>
         </div>
       </div>
 
       <canvas class="intro__stars" aria-hidden="true"></canvas>
+      <canvas class="intro__gl" aria-hidden="true"></canvas>
 
       <div class="scene" aria-hidden="true">
         <div class="float">
@@ -87,105 +94,137 @@
     </div>
   </section>
 
+  <!-- Faixa de hábitos: o que fazer anda pra um lado, o que segurar pro outro -->
+  <section class="ticker" aria-hidden="true">
+    <div class="ticker__row" data-marquee="-1">
+      <div class="ticker__track">
+        <span class="pill"><i></i>Beber 2L de água</span>
+        <span class="pill"><i></i>Treinar</span>
+        <span class="pill"><i></i>Ler 20 páginas</span>
+        <span class="pill"><i></i>Acordar às 5h</span>
+        <span class="pill"><i></i>10 mil passos</span>
+        <span class="pill"><i></i>Academia</span>
+        <span class="pill"><i></i>Primeira hora sem celular</span>
+      </div>
+    </div>
+    <div class="ticker__row" data-marquee="1">
+      <div class="ticker__track">
+        <span class="pill pill--no"><i></i>Delivery</span>
+        <span class="pill pill--no"><i></i>Doce</span>
+        <span class="pill pill--no"><i></i>Redes sociais</span>
+        <span class="pill pill--no"><i></i>Pedir comida</span>
+        <span class="pill pill--no"><i></i>Delivery</span>
+        <span class="pill pill--no"><i></i>Doce</span>
+        <span class="pill pill--no"><i></i>Redes sociais</span>
+        <span class="pill pill--no"><i></i>Pedir comida</span>
+      </div>
+    </div>
+  </section>
+
   <section class="section name" id="nome">
     <div class="wrap">
-      <h2 data-split>Um nome, três ideias.</h2>
+      <div class="head">
+        <h2 data-split>Um nome, três ideias.</h2>
+      </div>
 
-      <div class="name__rows">
-        <div class="name__row">
-          <p class="name__word" data-drift="-1">ok</p>
-          <div class="name__text">
-            <h3>Pro que você quer fazer</h3>
-            <p>Beber água, treinar, ler. Cada check enche a bolinha um pouco mais.</p>
-          </div>
-        </div>
-        <div class="name__row">
-          <p class="name__word name__word--gray" data-drift="1">no</p>
-          <div class="name__text">
-            <h3>Pro que você quer segurar</h3>
-            <p>Delivery, doce, redes sociais. Se passar do limite, o app registra e não julga.</p>
-          </div>
-        </div>
-        <div class="name__row">
-          <p class="name__word" data-drift="-1">ok<span>no</span></p>
-          <div class="name__text">
-            <h3>Quer dizer janela</h3>
-            <p>Em polonês e em russo. É o coração do app: cada hábito aparece na janela de horário dele.</p>
-          </div>
-        </div>
+      <div class="trio">
+        <article class="card name__card">
+          <h3>Pro que você quer fazer</h3>
+          <p>Beber água, treinar, ler. Cada check enche a bolinha um pouco mais.</p>
+          <p class="name__word" aria-hidden="true" data-parallax="0.18">ok</p>
+        </article>
+        <article class="card name__card">
+          <h3>Pro que você quer segurar</h3>
+          <p>Delivery, doce, redes sociais. Se passar do limite, o app registra e não julga.</p>
+          <p class="name__word name__word--gray" aria-hidden="true" data-parallax="0.3">no</p>
+        </article>
+        <article class="card name__card">
+          <h3>Quer dizer janela</h3>
+          <p>Em polonês e em russo. É o coração do app: cada hábito aparece na janela de horário dele.</p>
+          <p class="name__word" aria-hidden="true" data-parallax="0.18">ok<span>no</span></p>
+        </article>
       </div>
     </div>
   </section>
 
   <section class="section how" id="como">
     <div class="wrap">
-      <h2 data-split>Três passos, e o resto é no widget.</h2>
+      <div class="head">
+        <h2 data-split>Três passos, e o resto é no widget.</h2>
+      </div>
 
-      <ol class="how__steps">
-        <li>
-          <span class="how__n">1</span>
-          <h3>Crie o hábito</h3>
-          <p>Escolha Fazer ou Limitar, quantas vezes por dia, semana ou mês, e o horário.</p>
-        </li>
-        <li>
-          <span class="how__n">2</span>
-          <h3>Ele aparece na hora</h3>
-          <p>No começo do horário chega um aviso, e o widget põe o hábito no topo. Fora do horário ele fica discreto.</p>
-        </li>
-        <li>
-          <span class="how__n">3</span>
-          <h3>Marque com um toque</h3>
-          <p>Toque na bolinha direto na tela inicial. Errou? A setinha de desfazer resolve na hora.</p>
-        </li>
-      </ol>
+      <div class="features">
+        <article class="card feature">
+          <div class="feature__copy">
+            <span class="feature__n">Passo 1</span>
+            <h3>Crie o hábito</h3>
+            <p>Escolha Fazer ou Limitar, quantas vezes por dia, semana ou mês, e o horário.</p>
+          </div>
+          <div class="feature__visual" aria-hidden="true">
+            <div class="mock mock--form" data-parallax="0.12">
+              <div class="seg"><span class="on">Fazer</span><span>Limitar</span></div>
+              <div class="field"><small>Hábito</small><b>Beber 2L de água</b></div>
+              <div class="field field--pair">
+                <div><small>Meta</small><b>4× por dia</b></div>
+                <div><small>Horário</small><b>08:00 – 20:00</b></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card feature">
+          <div class="feature__copy">
+            <span class="feature__n">Passo 2</span>
+            <h3>Ele aparece na hora</h3>
+            <p>No começo do horário chega um aviso, e o widget põe o hábito no topo. Fora do horário ele fica discreto.</p>
+          </div>
+          <div class="feature__visual feature__visual--phone" aria-hidden="true">
+            <div class="lock" data-parallax="0.12">
+              <div class="lock__screen">
+                <i class="lock__island"></i>
+                <p class="lock__date">Segunda-feira</p>
+                <p class="lock__time">08:00</p>
+                <div class="alert">
+                  <img src="/okno-check-x-branco.svg" alt="">
+                  <div><b>Okno <small>agora</small></b><span>Beber 2L de água. A janela abriu.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card feature">
+          <div class="feature__copy">
+            <span class="feature__n">Passo 3</span>
+            <h3>Marque com um toque</h3>
+            <p>Toque na bolinha direto na tela inicial. Errou? A setinha de desfazer resolve na hora.</p>
+          </div>
+          <div class="feature__visual" aria-hidden="true">
+            <div class="mock mock--tap" data-parallax="0.12">
+              <div class="wg__box wg__box--dark">
+                <div class="dots"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+                <b>Beber 2L de água</b>
+                <small>2 de 4</small>
+              </div>
+              <span class="chip chip--undo"><i></i>Desfazer</span>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section class="section widgets" id="widgets">
-    <div class="wrap widgets__grid">
-      <div class="widgets__copy">
+  <section class="dark widgets" id="widgets">
+    <div class="wrap">
+      <div class="head">
         <h2 data-split>O widget é o produto.</h2>
         <p class="lead">Três tamanhos, menos tempo de tela. Você resolve o dia sem abrir o app. Abrir o celular pra marcar um hábito e cair no feed é exatamente o que o Okno quer evitar.</p>
-
-        <dl class="notes">
-          <div>
-            <dt>Ordem automática</dt>
-            <dd>Passou do limite, está atrasado ou o horário acaba logo: sobe. Já fez: desce.</dd>
-          </div>
-          <div>
-            <dt>Sem repetir</dt>
-            <dd>Dois widgets pequenos mostram hábitos diferentes. Você troca e fixa o que quiser.</dd>
-          </div>
-          <div>
-            <dt>Favoritos</dt>
-            <dd>O que você marcar com estrela fica sempre no topo, no app e no widget.</dd>
-          </div>
-        </dl>
       </div>
 
-      <div class="widgets__stack" aria-hidden="true">
-        <figure class="wg wg--small" data-parallax="0.9">
-          <div class="wg__box wg__box--dark">
-            <div class="dots"><i class="on"></i><i class="on"></i><i></i><i></i></div>
-            <b>Beber 2L de água</b>
-            <small>Atrasado, faltam 2</small>
-          </div>
-          <figcaption>Pequeno, 2×2</figcaption>
-        </figure>
-
-        <figure class="wg wg--medium" data-parallax="0.35">
-          <div class="wg__box">
-            <ul class="rows">
-              <li><span>Pedir comida</span><em>4/3</em><i class="tap tap--over">+1</i></li>
-              <li><span>Beber 2L de água</span><em>2/4</em><i class="tap"></i></li>
-              <li><span>Academia</span><em>0/1</em><i class="tap"></i></li>
-            </ul>
-          </div>
-          <figcaption>Médio, 4×2, os 3 mais urgentes</figcaption>
-        </figure>
-
-        <figure class="wg wg--large" data-parallax="-0.3">
-          <div class="wg__box">
+      <div class="bento" aria-hidden="true">
+        <figure class="card bento__card bento__card--tall">
+          <figcaption><b>Grande, 4×4</b><span>Com a sua semana</span></figcaption>
+          <div class="wg__box" data-parallax="0.14">
             <ol class="week">
               <li><span>S</span><i style="--f:1"></i></li>
               <li><span>T</span><i style="--f:.75"></i></li>
@@ -202,107 +241,192 @@
               <li><span>Ler 20 páginas</span><em>1/1</em><i class="tap tap--done"></i></li>
             </ul>
           </div>
-          <figcaption>Grande, 4×4, com a sua semana</figcaption>
+        </figure>
+
+        <figure class="card bento__card">
+          <figcaption><b>Pequeno, 2×2</b><span>Um hábito por vez</span></figcaption>
+          <div class="wg__box wg__box--dark wg__box--small" data-parallax="0.1">
+            <div class="dots"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+            <b>Beber 2L de água</b>
+            <small>Atrasado, faltam 2</small>
+          </div>
+        </figure>
+
+        <figure class="card bento__card">
+          <figcaption><b>Médio, 4×2</b><span>Os 3 mais urgentes</span></figcaption>
+          <div class="wg__box wg__box--medium" data-parallax="0.1">
+            <ul class="rows">
+              <li><span>Pedir comida</span><em>4/3</em><i class="tap tap--over">+1</i></li>
+              <li><span>Beber 2L de água</span><em>2/4</em><i class="tap"></i></li>
+              <li><span>Academia</span><em>0/1</em><i class="tap"></i></li>
+            </ul>
+          </div>
         </figure>
       </div>
-    </div>
-  </section>
 
-  <section class="day" id="dia">
-    <div class="day__pin">
-      <div class="day__head">
-        <h2 data-split>Um dia com o Okno.</h2>
-      </div>
-      <ol class="day__track">
-        <li>
-          <time>08:00</time>
-          <h3>A janela abre</h3>
-          <p>Chega o aviso da água e ela sobe pro topo do widget.</p>
-        </li>
-        <li>
-          <time>10:15</time>
-          <h3>Um toque, sem abrir o app</h3>
-          <p>Bebeu? Toca na bolinha e ela enche.</p>
-        </li>
-        <li>
-          <time>17:00</time>
-          <h3>O alerta aparece</h3>
-          <p>O dia andou mais rápido que a meta. A academia também entra no radar.</p>
-        </li>
-        <li>
-          <time>20:40</time>
-          <h3>O limite é passado</h3>
-          <p>Pediu comida de novo: 4/3. O app registra com um "+1" e segue.</p>
-        </li>
-        <li>
-          <time>21:00</time>
-          <h3>Hora de ler</h3>
-          <p>O que já foi feito desce. A leitura assume o topo.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="section features" id="recursos">
-    <div class="wrap">
-      <h2 data-split>Pequenos detalhes que fazem você voltar.</h2>
-
-      <dl class="features__list">
+      <dl class="notes">
         <div>
-          <dt>Desafio 33 dias</dt>
-          <dd>Confira o app uma vez por dia durante 33 dias e ganhe uma semana de Pro. Pode esquecer até 2 dias no caminho.</dd>
+          <dt>Ordem automática</dt>
+          <dd>Passou do limite, está atrasado ou o horário acaba logo: sobe. Já fez: desce.</dd>
         </div>
         <div>
-          <dt>Histórico por dia</dt>
-          <dd>Toque na data e veja cada dia pintado pela nota. Cada hábito pesa igual, e dia sem uso não conta contra você.</dd>
+          <dt>Sem repetir</dt>
+          <dd>Dois widgets pequenos mostram hábitos diferentes. Você troca e fixa o que quiser.</dd>
         </div>
         <div>
-          <dt>Ideias pra testar</dt>
-          <dd>Acordar às 5h, 10 mil passos, primeira hora sem celular. Um toque e o hábito já está criado.</dd>
-        </div>
-        <div>
-          <dt>Aviso no início</dt>
-          <dd>Uma notificação quando a janela de um hábito abre. Liga e desliga em cada um.</dd>
-        </div>
-        <div>
-          <dt>Desfazer sem susto</dt>
-          <dd>Marcou sem querer? A barrinha de desfazer no app e a setinha no widget resolvem.</dd>
-        </div>
-        <div>
-          <dt>Backup na conta</dt>
-          <dd>Troque de celular sem perder nada. E dá pra copiar todos os seus dados quando quiser.</dd>
+          <dt>Favoritos</dt>
+          <dd>O que você marcar com estrela fica sempre no topo, no app e no widget.</dd>
         </div>
       </dl>
     </div>
   </section>
 
+  <!-- Um dia: a tela trava, o relógio do celular anda com o scroll e os avisos se empilham -->
+  <section class="day" id="dia">
+    <div class="day__pin">
+      <div class="day__copy">
+        <h2 data-split>Um dia com o Okno.</h2>
+        <ol class="day__steps">
+          <li>
+            <time>08:00</time>
+            <h3>A janela da água abre</h3>
+            <p>O aviso chega na hora que você escolheu e a água sobe pro topo do widget.</p>
+          </li>
+          <li>
+            <time>10:15</time>
+            <h3>Os passos vão somando</h3>
+            <p>Você lança quanto já andou e a bolinha enche um pouco mais, até fechar a meta.</p>
+          </li>
+          <li>
+            <time>17:00</time>
+            <h3>A academia entra no radar</h3>
+            <p>O dia andou mais rápido que a meta. Ainda falta o treino de hoje, então ela sobe no widget.</p>
+          </li>
+          <li>
+            <time>20:40</time>
+            <h3>O limite ficou pra trás</h3>
+            <p>Pediu comida de novo: 4 de 3. O app registra com um "+1", sem bloquear nem dar bronca.</p>
+          </li>
+          <li>
+            <time>21:00</time>
+            <h3>Hora de ler</h3>
+            <p>O que já foi feito desce. A leitura assume o topo.</p>
+          </li>
+        </ol>
+        <div class="day__progress" aria-hidden="true"><i></i></div>
+      </div>
+
+      <div class="day__phone" aria-hidden="true">
+        <canvas class="day__gl"></canvas>
+        <div class="lock lock--day">
+          <div class="lock__screen">
+            <i class="lock__island"></i>
+            <p class="lock__date">Segunda-feira</p>
+            <p class="lock__time">08:00</p>
+            <div class="day__alerts">
+              <div class="alert">
+                <img src="/okno-check-x-branco.svg" alt="">
+                <div><b>Beber 2L de água <small>08:00</small></b><span>A janela abriu.</span></div>
+              </div>
+              <div class="alert">
+                <img src="/okno-check-x-branco.svg" alt="">
+                <div><b>10 mil passos <small>10:15</small></b><span>Você já fez 4 mil.</span></div>
+              </div>
+              <div class="alert">
+                <img src="/okno-check-x-branco.svg" alt="">
+                <div><b>Academia <small>17:00</small></b><span>Entrou no radar. Falta 1 hoje.</span></div>
+              </div>
+              <div class="alert">
+                <img src="/okno-check-x-branco.svg" alt="">
+                <div><b>Pedir comida <small>20:40</small></b><span>4/3, registrado com +1.</span></div>
+              </div>
+              <div class="alert">
+                <img src="/okno-check-x-branco.svg" alt="">
+                <div><b>Ler 20 páginas <small>21:00</small></b><span>Hora de ler.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section extras" id="recursos">
+    <div class="wrap">
+      <div class="head">
+        <h2 data-split>Pequenos detalhes que fazem você voltar.</h2>
+      </div>
+
+      <div class="grid">
+        <article class="card extra">
+          <div class="extra__token" aria-hidden="true"><span class="tok-num">33</span></div>
+          <h3>Desafio 33 dias</h3>
+          <p>Confira o app uma vez por dia durante 33 dias e ganhe uma semana de Pro. Pode esquecer até 2 dias no caminho.</p>
+        </article>
+        <article class="card extra">
+          <div class="extra__token" aria-hidden="true">
+            <span class="tok-heat"><i style="--f:1"></i><i style="--f:.75"></i><i style="--f:.5"></i><i style="--f:1"></i><i style="--f:.25"></i><i style="--f:0"></i><i style="--f:.5"></i><i style="--f:.75"></i><i style="--f:1"></i><i style="--f:1"></i><i style="--f:.5"></i><i style="--f:.75"></i><i style="--f:.25"></i><i style="--f:0"></i><i style="--f:1"></i><i style="--f:.5"></i><i style="--f:.75"></i><i style="--f:1"></i><i style="--f:1"></i><i style="--f:.5"></i><i style="--f:.25"></i></span>
+          </div>
+          <h3>Histórico por dia</h3>
+          <p>Toque na data e veja cada dia pintado pela nota. Cada hábito pesa igual, e dia sem uso não conta contra você.</p>
+        </article>
+        <article class="card extra">
+          <div class="extra__token" aria-hidden="true">
+            <span class="tok-chips"><span class="chip">Acordar às 5h</span><span class="chip">10 mil passos</span><span class="chip">Primeira hora sem celular</span></span>
+          </div>
+          <h3>Ideias pra testar</h3>
+          <p>Acordar às 5h, 10 mil passos, primeira hora sem celular. Um toque e o hábito já está criado.</p>
+        </article>
+        <article class="card extra">
+          <div class="extra__token" aria-hidden="true">
+            <span class="alert alert--small"><img src="/okno-check-x-branco.svg" alt=""><span><b>Okno</b><span>A janela abriu</span></span></span>
+          </div>
+          <h3>Aviso no início</h3>
+          <p>Uma notificação quando a janela de um hábito abre. Liga e desliga em cada um.</p>
+        </article>
+        <article class="card extra">
+          <div class="extra__token" aria-hidden="true"><span class="chip chip--undo chip--big"><i></i>Desfazer</span></div>
+          <h3>Desfazer sem susto</h3>
+          <p>Marcou sem querer? A barrinha de desfazer no app e a setinha no widget resolvem.</p>
+        </article>
+        <article class="card extra">
+          <div class="extra__token" aria-hidden="true"><span class="tok-sync"><i></i><b></b><i></i></span></div>
+          <h3>Backup na conta</h3>
+          <p>Troque de celular sem perder nada. E dá pra copiar todos os seus dados quando quiser.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="section plans" id="planos">
     <div class="wrap">
-      <h2 data-split>Comece grátis. Fique se fizer sentido.</h2>
+      <div class="head">
+        <h2 data-split>Comece grátis. Fique se fizer sentido.</h2>
+      </div>
 
       <div class="plans__grid">
-        <article class="plan">
+        <article class="card plan">
           <h3>Grátis</h3>
           <p class="plan__price">R$ 0</p>
           <ul>
             <li>Até 4 hábitos</li>
-            <li>Todos os widgets e avisos</li>
-            <li>Metas de valor (R$, km, páginas)</li>
-            <li>Com conta: nuvem e versão web</li>
-            <li>Anúncio só se você quiser (libera +1 hábito)</li>
+            <li>Todos os widgets e todos os avisos</li>
+            <li>Metas em valor: R$, km ou páginas</li>
+            <li>Com conta, seus dados na nuvem e na versão web</li>
+            <li>Anúncio só se você quiser, e ele libera +1 hábito</li>
           </ul>
         </article>
 
-        <article class="plan">
+        <article class="card plan plan--pro">
           <h3>Okno Pro</h3>
           <p class="plan__price">R$ 49,90 <span>por ano, com 7 dias grátis</span></p>
           <p class="plan__alt">Ou R$ 7,90 por mês, ou R$ 99,90 uma vez só.</p>
           <ul>
+            <li>Tudo do plano grátis</li>
             <li>Hábitos ilimitados</li>
-            <li>Tudo do grátis, sem limite</li>
-            <li>Novidades do Pro inclusas</li>
-            <li>Nenhum anúncio</li>
-            <li>Apoia um app independente</li>
+            <li>Novidades do Pro já inclusas</li>
+            <li>Sem anúncios</li>
+            <li>Você apoia um app independente</li>
           </ul>
         </article>
       </div>
@@ -311,51 +435,24 @@
     </div>
   </section>
 
-  <section class="section privacy" id="privacidade">
-    <div class="wrap">
-      <h2 data-split>Seus hábitos são seus.</h2>
-
-      <div class="privacy__grid">
-        <div>
-          <h3>Só o necessário</h3>
-          <p>Hábitos, checks, nome e e-mail. Nada de localização, contatos ou fotos.</p>
-        </div>
-        <div>
-          <h3>Nada à venda</h3>
-          <p>Não vendemos dados. Conexões futuras, como saúde ou tempo de tela, só com a sua permissão.</p>
-        </div>
-        <div>
-          <h3>Apague quando quiser</h3>
-          <p>Exclua a conta e todos os dados pelo próprio app, a qualquer momento (LGPD).</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="section faq" id="duvidas">
-    <div class="wrap faq__grid">
-      <h2 data-split>Perguntas frequentes</h2>
+    <div class="wrap">
+      <div class="head">
+        <h2 data-split>Perguntas frequentes</h2>
+      </div>
 
       <div class="faq__list">
         <details>
           <summary>Preciso abrir o app pra marcar?</summary>
-          <p>Não. O widget marca direto da tela inicial: toque na bolinha ou no botão. O app serve pra criar, editar e ver o histórico.</p>
+          <div class="faq__body"><p>Não. O widget marca direto da tela inicial: toque na bolinha ou no botão. O app serve pra criar, editar e ver o histórico.</p></div>
         </details>
         <details>
           <summary>O que acontece se eu passar do limite?</summary>
-          <p>No Limitar, o app registra (por exemplo 4/3) e mostra um "+1". Ele não bloqueia nem dá bronca. A ideia é você enxergar, não se sentir mal.</p>
+          <div class="faq__body"><p>No Limitar, o app registra (por exemplo 4/3) e mostra um "+1". Ele não bloqueia nem dá bronca. A ideia é você enxergar, não se sentir mal.</p></div>
         </details>
         <details>
           <summary>Funciona sem internet?</summary>
-          <p>Sim. Tudo fica salvo no celular e o widget funciona offline. Com conta, os dados sincronizam quando a internet volta.</p>
-        </details>
-        <details>
-          <summary>Quanto custa?</summary>
-          <p>O grátis tem até 4 hábitos, com todos os widgets e avisos. O Pro libera hábitos ilimitados e tira os anúncios: R$ 7,90 por mês, R$ 49,90 por ano (com 7 dias grátis) ou R$ 99,90 uma vez só.</p>
-        </details>
-        <details>
-          <summary>Quando chega no iPhone?</summary>
-          <p>Depois do lançamento no Android. A mesma conta vai funcionar nos dois.</p>
+          <div class="faq__body"><p>Sim. Tudo fica salvo no celular e o widget funciona offline. Com conta, os dados sincronizam quando a internet volta.</p></div>
         </details>
       </div>
     </div>
@@ -366,7 +463,7 @@
       <p class="closing__line" data-split>Menos tela.<br>Mais do que importa.</p>
       <div class="closing__actions">
         <a class="btn" href="https://okno-efb22.web.app/app">Entrar na web</a>
-        <p>O Okno chega primeiro no Android, no Google Play. iPhone logo depois.</p>
+        <p>Disponível na Google Play e na Apple Store.</p>
       </div>
     </div>
   </section>
@@ -380,9 +477,9 @@
       <span>okno</span>
     </a>
     <nav aria-label="Rodapé">
-      <a href="https://okno-efb22.web.app/privacidade">Privacidade</a>
-      <a href="https://okno-efb22.web.app/termos">Termos</a>
-      <a href="https://okno-efb22.web.app/excluir-conta">Excluir conta</a>
+      <a href="/privacidade/" target="_blank" rel="noopener">Privacidade</a>
+      <a href="/termos/" target="_blank" rel="noopener">Termos</a>
+      <a href="/excluir-conta/" target="_blank" rel="noopener">Excluir conta</a>
       <a href="mailto:suporte.okno@gmail.com">suporte.okno@gmail.com</a>
     </nav>
     <p>© 2026 Okno</p>

@@ -1,0 +1,158 @@
+/* ---------- um dia: texto de um lado, celular do outro ---------- */
+
+.day__pin {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 32px clamp(24px, 6vw, 96px);
+  padding: calc(var(--nav-h) + 16px) max(var(--gutter), (100vw - 1360px) / 2) 32px;
+}
+
+.motion .day__pin {
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.day__copy {
+  display: grid;
+  gap: clamp(24px, 5vh, 56px);
+}
+
+.day__steps {
+  display: grid;
+  gap: 28px;
+}
+
+/* Com animação os cinco momentos ocupam o mesmo lugar e só um aparece por vez. */
+.motion .day__steps li {
+  grid-area: 1 / 1;
+}
+
+.day__steps time {
+  display: block;
+  color: var(--gray);
+  font-family: var(--display);
+  font-size: clamp(18px, 1.5vw, 22px);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 10px;
+}
+
+.day__steps h3 {
+  font-size: clamp(28px, 3.4vw, 52px);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.day__steps p {
+  color: var(--gray);
+  font-size: clamp(16px, 1.3vw, 20px);
+  line-height: 1.45;
+  margin-top: 14px;
+  max-width: 32ch;
+}
+
+.day__progress {
+  display: none;
+  width: min(100%, 320px);
+  height: 2px;
+  background: var(--line);
+}
+
+.motion .day__progress {
+  display: block;
+}
+
+.day__progress i {
+  display: block;
+  height: 100%;
+  background: var(--ink);
+  transform-origin: left;
+  transform: scaleX(0.2);
+}
+
+/* Aqui o celular aparece inteiro, então a largura também respeita a altura da janela. */
+.day__phone {
+  --pw: min(clamp(240px, 22vw, 320px), (100vh - 230px) / 2.095);
+  --pw: min(clamp(240px, 22vw, 320px), (100svh - 230px) / 2.095);
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+/* Com WebGL o celular é o modelo 3D; o de HTML fica oculto, só guiando a animação. */
+.day__gl {
+  display: none;
+}
+
+.gl .day__gl {
+  display: block;
+  width: calc(var(--pw) * 1.7);
+  max-width: none;
+  height: calc(var(--pw) * 2.095 * 1.2);
+  filter: drop-shadow(0 40px 46px rgb(0 0 0 / 0.22));
+}
+
+/* Transparente em vez de "visibility: hidden", que o GSAP leria como aviso já apagado. */
+.gl .day__phone .lock {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lock.lock--day {
+  --pw: inherit;
+  position: relative;
+  top: auto;
+  left: auto;
+  margin: 0;
+}
+
+.day__alerts {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  margin-top: calc(var(--pw) * 0.05);
+}
+
+.day__alerts .alert {
+  margin-top: 0;
+}
+
+.motion .day__alerts .alert {
+  position: absolute;
+  inset: 0 0 auto 0;
+}
+
+.day__alerts .alert div {
+  min-width: 0;
+}
+
+.day__alerts .alert b {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.day__alerts .alert small {
+  font-size: 12px;
+}
+
+.day__alerts .alert span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 820px) {
+  .day__pin {
+    grid-template-columns: 1fr;
+    align-content: start;
+    align-items: start;
+  }
+
+  .day__phone {
+    --pw: min(70vw, 290px);
+  }
+}

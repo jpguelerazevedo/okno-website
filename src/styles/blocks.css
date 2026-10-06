@@ -1,0 +1,69 @@
+/* ---------- títulos em linhas ---------- */
+
+/* Folga pra máscara não cortar a perna do g, do p e do ç. */
+.ln-mask {
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+
+/* ---------- blocos comuns: cabeçalho de seção e cartão ---------- */
+
+.head {
+  display: grid;
+  justify-items: center;
+  gap: clamp(16px, 2vw, 28px);
+  text-align: center;
+  margin-bottom: clamp(40px, 6vw, 88px);
+}
+
+.card {
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow: hidden;
+}
+
+.card p {
+  color: var(--gray);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding-inline: 16px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* A setinha de desfazer: três quartos de círculo com a ponta. */
+.chip--undo i {
+  position: relative;
+  width: 13px;
+  height: 13px;
+  border: 1.5px solid var(--ink);
+  border-left-color: transparent;
+  border-radius: 50%;
+}
+
+.chip--undo i::after {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: -2px;
+  border: 3.5px solid transparent;
+  border-right-color: var(--ink);
+  transform: rotate(40deg);
+}
+
+.chip--big {
+  height: 52px;
+  padding-inline: 26px;
+  font-size: 18px;
+}

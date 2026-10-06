@@ -1,0 +1,122 @@
+/* ---------- os widgets desenhados ---------- */
+
+.wg__box {
+  border-radius: calc(var(--c) * 0.46);
+  background: var(--paper);
+  color: var(--ink);
+  padding: calc(var(--c) * 0.3);
+  font-size: calc(var(--c) * 0.18);
+  line-height: 1.25;
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.wg__box--dark {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.wg__box b {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.15em;
+  margin-top: auto;
+}
+
+.wg__box small {
+  font-size: 0.82em;
+  opacity: 0.6;
+  margin-top: 0.25em;
+}
+
+.dots {
+  display: flex;
+  gap: 0.35em;
+}
+
+.dots i {
+  width: 1.15em;
+  height: 1.15em;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+}
+
+.dots i.on {
+  background: currentColor;
+}
+
+.rows {
+  display: grid;
+  gap: 0.62em;
+}
+
+.rows li {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 0.7em;
+}
+
+.rows span {
+  font-family: var(--display);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rows em {
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  color: var(--gray);
+}
+
+.tap {
+  width: 1.9em;
+  height: 1.9em;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  display: grid;
+  place-items: center;
+  font-style: normal;
+  font-size: 0.86em;
+  font-weight: 600;
+}
+
+.tap--over,
+.tap--done {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.tap--done::before {
+  content: '';
+  width: 0.75em;
+  height: 0.4em;
+  border-left: 1.5px solid;
+  border-bottom: 1.5px solid;
+  transform: translateY(-15%) rotate(-45deg);
+}
+
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  color: var(--gray);
+  font-size: 0.8em;
+}
+
+.week li {
+  display: grid;
+  justify-items: center;
+  gap: 0.5em;
+}
+
+.week i {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: rgb(0 0 0 / var(--f));
+}

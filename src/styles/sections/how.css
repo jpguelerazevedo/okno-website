@@ -1,0 +1,142 @@
+/* ---------- como funciona: um cartão largo por passo ---------- */
+
+.features {
+  display: grid;
+  gap: clamp(12px, 1.4vw, 20px);
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  min-height: clamp(380px, 38vw, 540px);
+}
+
+.feature__copy {
+  padding: clamp(28px, 5vw, 80px);
+}
+
+.feature__n {
+  display: block;
+  color: var(--gray);
+  font-size: 15px;
+  margin-bottom: 14px;
+}
+
+.feature h3 {
+  font-size: clamp(32px, 4.4vw, 64px);
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.feature__copy p {
+  margin-top: 16px;
+  max-width: 34ch;
+  font-size: clamp(16px, 1.3vw, 20px);
+  line-height: 1.45;
+}
+
+.feature__visual {
+  --c: clamp(84px, 8.4vw, 124px);
+  display: grid;
+  place-items: center;
+  padding: clamp(32px, 4vw, 64px) clamp(20px, 4vw, 64px);
+}
+
+.mock {
+  width: min(100%, 400px);
+  will-change: transform;
+}
+
+.mock--form,
+.alert {
+  border-radius: 28px;
+  background: var(--paper);
+  box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.25);
+}
+
+.mock--form {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+}
+
+.seg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--card);
+  font-family: var(--display);
+  font-weight: 500;
+  text-align: center;
+}
+
+.seg span {
+  padding: 10px;
+  border-radius: 999px;
+  color: var(--gray);
+}
+
+.seg .on {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.field,
+.field--pair > div {
+  display: grid;
+  gap: 2px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: var(--card);
+}
+
+.field--pair {
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0;
+  background: none;
+}
+
+.field small {
+  color: var(--gray);
+  font-size: 13px;
+}
+
+.field b {
+  font-family: var(--display);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Passo 2: o celular bloqueado (lock.css), cortado pelo pé do cartão. */
+.feature__visual--phone {
+  position: relative;
+  align-self: stretch;
+  min-height: 400px;
+  padding: 0;
+}
+
+.mock--tap {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  width: auto;
+}
+
+.mock--tap .wg__box {
+  width: calc(var(--c) * 2.4);
+  height: calc(var(--c) * 2.4);
+  box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.45);
+}
+
+@media (max-width: 820px) {
+  .feature {
+    grid-template-columns: 1fr;
+  }
+
+  .feature__copy {
+    padding-bottom: 0;
+  }
+}

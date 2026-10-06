@@ -1,0 +1,146 @@
+/* Páginas de texto: privacidade, termos e excluir conta. */
+
+@import './base.css';
+@import './nav.css';
+@import './blocks.css';
+@import './footer.css';
+
+.legal__main {
+  max-width: 880px;
+  margin-inline: auto;
+  padding: calc(var(--nav-h) + clamp(56px, 9vw, 120px)) var(--gutter) clamp(72px, 10vw, 140px);
+}
+
+.legal__updated {
+  color: var(--gray);
+  font-size: 15px;
+  margin-bottom: 18px;
+}
+
+.legal h1 {
+  font-size: clamp(40px, 6.4vw, 84px);
+  max-width: 14ch;
+}
+
+.legal__lead {
+  margin-top: clamp(20px, 2.4vw, 32px);
+  max-width: 52ch;
+}
+
+.legal__body {
+  margin-top: clamp(40px, 6vw, 80px);
+}
+
+.legal__body h2 {
+  max-width: none;
+  font-size: clamp(22px, 2vw, 28px);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-top: clamp(36px, 4vw, 56px);
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.legal__body > h2:first-child {
+  margin-top: 0;
+}
+
+.legal__body p,
+.legal__body li {
+  color: var(--gray);
+  max-width: 68ch;
+}
+
+.legal__body p,
+.legal__body ul,
+.legal__body ol {
+  margin-top: 14px;
+}
+
+.legal__body ul,
+.legal__body ol {
+  display: grid;
+  gap: 10px;
+}
+
+.legal__body ul li {
+  position: relative;
+  padding-left: 24px;
+}
+
+.legal__body ul li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.75em;
+  width: 10px;
+  height: 1.5px;
+  background: var(--ink);
+}
+
+.legal__body strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.legal__body a {
+  color: var(--ink);
+  text-underline-offset: 3px;
+}
+
+/* Excluir conta: cada caminho num cartão. */
+.legal__body--cards {
+  display: grid;
+  gap: clamp(12px, 1.4vw, 20px);
+}
+
+.legal__body .card {
+  padding: clamp(24px, 3vw, 44px);
+}
+
+.legal__body .card h2 {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.steps {
+  counter-reset: step;
+}
+
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 40px;
+  min-height: 28px;
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  place-items: center;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.legal__body .card--dark {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.legal__body .card--dark p {
+  color: #9a9a9a;
+}
+
+.nav__links a[aria-current] {
+  color: var(--ink);
+}

@@ -1,0 +1,70 @@
+/* ---------- faixa de hábitos ---------- */
+
+.ticker {
+  display: grid;
+  gap: 12px;
+  padding-block: clamp(8px, 2vw, 24px) clamp(24px, 4vw, 56px);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+.ticker__row {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.ticker__track {
+  display: flex;
+  gap: 12px;
+  padding-right: 12px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 46px;
+  padding: 0 20px 0 8px;
+  border-radius: 999px;
+  background: var(--card);
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.pill i {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--ink);
+  display: grid;
+  place-items: center;
+}
+
+.pill i::before {
+  content: '';
+  width: 11px;
+  height: 6px;
+  border-left: 1.5px solid var(--paper);
+  border-bottom: 1.5px solid var(--paper);
+  transform: translateY(-15%) rotate(-45deg);
+}
+
+.pill--no {
+  color: var(--gray);
+}
+
+.pill--no i {
+  background:
+    linear-gradient(var(--gray), var(--gray)) center / 12px 1.5px no-repeat,
+    linear-gradient(var(--gray), var(--gray)) center / 1.5px 12px no-repeat,
+    var(--paper);
+  transform: rotate(45deg);
+}
+
+.pill--no i::before {
+  content: none;
+}

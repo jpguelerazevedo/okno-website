@@ -1,0 +1,59 @@
+/* ---------- dúvidas ---------- */
+
+.faq__list {
+  display: grid;
+  gap: 10px;
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+.faq details {
+  border-radius: clamp(18px, 1.8vw, 26px);
+  background: var(--card);
+  padding-inline: clamp(20px, 2.4vw, 32px);
+}
+
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 22px;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(18px, 1.5vw, 22px);
+  letter-spacing: -0.015em;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: '';
+  flex: none;
+  width: 14px;
+  height: 14px;
+  background:
+    linear-gradient(var(--ink), var(--ink)) center / 100% 1.5px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) center / 1.5px 100% no-repeat;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Com animação quem vira o "+" é a classe, pra ele girar junto com a caixa e não só no fim. */
+:root:not(.motion) .faq details[open] summary::after,
+.faq details.is-open summary::after {
+  transform: rotate(45deg);
+}
+
+.faq__body {
+  overflow: hidden;
+}
+
+.faq details p {
+  color: var(--gray);
+  padding-bottom: 24px;
+  max-width: 58ch;
+}
