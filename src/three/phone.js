@@ -176,6 +176,6 @@ function logoTexture() {
     canvas.getContext('2d').drawImage(image, 0, 0, 256, 256)
     texture.needsUpdate = true
   }
-  image.src = '/okno-check-x-branco.svg'
+  image.src = `${import.meta.env.BASE_URL}okno-check-x-branco.svg`
   return texture
 }

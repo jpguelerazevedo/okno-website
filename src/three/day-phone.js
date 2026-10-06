@@ -81,7 +81,7 @@ function lockTexture({ clockEl, dateEl, alertEls, getSlot }) {
 
   const logo = new Image()
   logo.onload = () => draw(true)
-  logo.src = '/okno-check-x-branco.svg'
+  logo.src = `${import.meta.env.BASE_URL}okno-check-x-branco.svg`
 
   const alerts = alertEls.map((el) => ({
     el,

@@ -4,6 +4,9 @@ import { defineConfig } from 'vite'
 // As páginas de texto moram em pages/, mas o endereço não leva "pages": /privacidade/, /termos/ etc.
 const pages = ['privacidade', 'termos', 'excluir-conta']
 
+// No GitHub Pages o site mora num subcaminho (/okno-website/); o workflow informa qual em BASE_PATH.
+const base = `${(process.env.BASE_PATH || '').replace(/\/$/, '')}/`
+
 function pagesFolder() {
   return {
     name: 'pages-folder',
@@ -18,6 +21,11 @@ function pagesFolder() {
       })
     },
 
+    // O Vite ajusta CSS, JS e imagens ao subcaminho, mas não os links entre páginas.
+    transformIndexHtml(html) {
+      return base === '/' ? html : html.replace(/(<a\s[^>]*?href=")\/(?!\/)/g, `$1${base}`)
+    },
+
     // No build: o HTML sai em dist/privacidade/, sem a pasta pages no caminho.
     generateBundle(_options, bundle) {
       for (const file of Object.values(bundle)) {
@@ -28,6 +36,7 @@ function pagesFolder() {
 }
 
 export default defineConfig({
+  base,
   plugins: [pagesFolder()],
   build: {
     rollupOptions: {
