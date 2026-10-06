@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Okno</title>
+<meta name="description" content="Okno: hábitos que aparecem na hora certa, direto no widget da tela inicial.">
+<meta property="og:title" content="Okno, hábitos na hora certa">
+<meta property="og:description" content="O que fazer, o que segurar. Marque direto no widget da tela inicial.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" type="image/svg+xml" href="/okno-check-x-preto.svg" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/svg+xml" href="/okno-check-x-branco.svg" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Funnel+Sans:wght@300..800&display=swap" rel="stylesheet">
+<script>
+  // A abertura com o celular só existe com JS e sem "reduzir movimento".
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
+</script>
+<link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav__brand" href="#topo" aria-label="Okno, voltar ao início">
+    <img src="/okno-check-x-preto.svg" alt="" width="28" height="28">
+    <span>okno</span>
+  </a>
+  <nav class="nav__links" aria-label="Seções">
+    <a href="#como">Como funciona</a>
+    <a href="#widgets">Widgets</a>
+    <a href="#planos">Planos</a>
+    <a href="#duvidas">Dúvidas</a>
+  </nav>
+  <a class="btn btn--small" href="https://okno-efb22.web.app/app">Entrar na web</a>
+</header>
+
+<main>
+
+  <!-- Abertura: o celular de costas, vira e a tela dele vira o site -->
+  <section class="intro" id="topo">
+    <div class="intro__stage">
+
+      <div class="hero">
+        <div class="hero__inner">
+          <h1>O que fazer.<br>O que segurar.</h1>
+          <p class="hero__lead">O Okno mostra no widget só o que importa agora. Você marca com um toque, sem abrir o app, e cada hábito aparece no horário que você escolheu.</p>
+          <div class="hero__actions">
+            <a class="btn" href="https://okno-efb22.web.app/app">Entrar na web</a>
+            <p class="hero__stores">Android em breve no Google Play.<br>iPhone logo depois.</p>
+          </div>
+        </div>
+      </div>
+
+      <canvas class="intro__stars" aria-hidden="true"></canvas>
+
+      <div class="scene" aria-hidden="true">
+        <div class="float">
+          <div class="phone">
+            <div class="phone__body"></div>
+
+            <div class="phone__back">
+              <div class="phone__plateau">
+                <i class="lens lens--a"></i>
+                <i class="lens lens--b"></i>
+                <i class="lens lens--c"></i>
+                <i class="phone__flash"></i>
+                <i class="phone__lidar"></i>
+                <i class="phone__mic"></i>
+              </div>
+              <div class="phone__glass">
+                <img src="/okno-check-x-branco.svg" alt="">
+              </div>
+            </div>
+
+            <div class="phone__front">
+              <div class="phone__screen">
+                <div class="phone__site"></div>
+                <i class="phone__island"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="intro__hint" aria-hidden="true"><span>Role para entrar</span><i></i></p>
+    </div>
+  </section>
+
+  <section class="section name" id="nome">
+    <div class="wrap">
+      <h2 data-split>Um nome, três ideias.</h2>
+
+      <div class="name__rows">
+        <div class="name__row">
+          <p class="name__word" data-drift="-1">ok</p>
+          <div class="name__text">
+            <h3>Pro que você quer fazer</h3>
+            <p>Beber água, treinar, ler. Cada check enche a bolinha um pouco mais.</p>
+          </div>
+        </div>
+        <div class="name__row">
+          <p class="name__word name__word--gray" data-drift="1">no</p>
+          <div class="name__text">
+            <h3>Pro que você quer segurar</h3>
+            <p>Delivery, doce, redes sociais. Se passar do limite, o app registra e não julga.</p>
+          </div>
+        </div>
+        <div class="name__row">
+          <p class="name__word" data-drift="-1">ok<span>no</span></p>
+          <div class="name__text">
+            <h3>Quer dizer janela</h3>
+            <p>Em polonês e em russo. É o coração do app: cada hábito aparece na janela de horário dele.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section how" id="como">
+    <div class="wrap">
+      <h2 data-split>Três passos, e o resto é no widget.</h2>
+
+      <ol class="how__steps">
+        <li>
+          <span class="how__n">1</span>
+          <h3>Crie o hábito</h3>
+          <p>Escolha Fazer ou Limitar, quantas vezes por dia, semana ou mês, e o horário.</p>
+        </li>
+        <li>
+          <span class="how__n">2</span>
+          <h3>Ele aparece na hora</h3>
+          <p>No começo do horário chega um aviso, e o widget põe o hábito no topo. Fora do horário ele fica discreto.</p>
+        </li>
+        <li>
+          <span class="how__n">3</span>
+          <h3>Marque com um toque</h3>
+          <p>Toque na bolinha direto na tela inicial. Errou? A setinha de desfazer resolve na hora.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section widgets" id="widgets">
+    <div class="wrap widgets__grid">
+      <div class="widgets__copy">
+        <h2 data-split>O widget é o produto.</h2>
+        <p class="lead">Três tamanhos, menos tempo de tela. Você resolve o dia sem abrir o app. Abrir o celular pra marcar um hábito e cair no feed é exatamente o que o Okno quer evitar.</p>
+
+        <dl class="notes">
+          <div>
+            <dt>Ordem automática</dt>
+            <dd>Passou do limite, está atrasado ou o horário acaba logo: sobe. Já fez: desce.</dd>
+          </div>
+          <div>
+            <dt>Sem repetir</dt>
+            <dd>Dois widgets pequenos mostram hábitos diferentes. Você troca e fixa o que quiser.</dd>
+          </div>
+          <div>
+            <dt>Favoritos</dt>
+            <dd>O que você marcar com estrela fica sempre no topo, no app e no widget.</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="widgets__stack" aria-hidden="true">
+        <figure class="wg wg--small" data-parallax="0.9">
+          <div class="wg__box wg__box--dark">
+            <div class="dots"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+            <b>Beber 2L de água</b>
+            <small>Atrasado, faltam 2</small>
+          </div>
+          <figcaption>Pequeno, 2×2</figcaption>
+        </figure>
+
+        <figure class="wg wg--medium" data-parallax="0.35">
+          <div class="wg__box">
+            <ul class="rows">
+              <li><span>Pedir comida</span><em>4/3</em><i class="tap tap--over">+1</i></li>
+              <li><span>Beber 2L de água</span><em>2/4</em><i class="tap"></i></li>
+              <li><span>Academia</span><em>0/1</em><i class="tap"></i></li>
+            </ul>
+          </div>
+          <figcaption>Médio, 4×2, os 3 mais urgentes</figcaption>
+        </figure>
+
+        <figure class="wg wg--large" data-parallax="-0.3">
+          <div class="wg__box">
+            <ol class="week">
+              <li><span>S</span><i style="--f:1"></i></li>
+              <li><span>T</span><i style="--f:.75"></i></li>
+              <li><span>Q</span><i style="--f:.5"></i></li>
+              <li><span>Q</span><i style="--f:1"></i></li>
+              <li><span>S</span><i style="--f:.25"></i></li>
+              <li><span>S</span><i style="--f:0"></i></li>
+              <li><span>D</span><i style="--f:0"></i></li>
+            </ol>
+            <ul class="rows">
+              <li><span>Pedir comida</span><em>4/3</em><i class="tap tap--over">+1</i></li>
+              <li><span>Beber 2L de água</span><em>2/4</em><i class="tap"></i></li>
+              <li><span>Academia</span><em>0/1</em><i class="tap"></i></li>
+              <li><span>Ler 20 páginas</span><em>1/1</em><i class="tap tap--done"></i></li>
+            </ul>
+          </div>
+          <figcaption>Grande, 4×4, com a sua semana</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="day" id="dia">
+    <div class="day__pin">
+      <div class="day__head">
+        <h2 data-split>Um dia com o Okno.</h2>
+      </div>
+      <ol class="day__track">
+        <li>
+          <time>08:00</time>
+          <h3>A janela abre</h3>
+          <p>Chega o aviso da água e ela sobe pro topo do widget.</p>
+        </li>
+        <li>
+          <time>10:15</time>
+          <h3>Um toque, sem abrir o app</h3>
+          <p>Bebeu? Toca na bolinha e ela enche.</p>
+        </li>
+        <li>
+          <time>17:00</time>
+          <h3>O alerta aparece</h3>
+          <p>O dia andou mais rápido que a meta. A academia também entra no radar.</p>
+        </li>
+        <li>
+          <time>20:40</time>
+          <h3>O limite é passado</h3>
+          <p>Pediu comida de novo: 4/3. O app registra com um "+1" e segue.</p>
+        </li>
+        <li>
+          <time>21:00</time>
+          <h3>Hora de ler</h3>
+          <p>O que já foi feito desce. A leitura assume o topo.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section features" id="recursos">
+    <div class="wrap">
+      <h2 data-split>Pequenos detalhes que fazem você voltar.</h2>
+
+      <dl class="features__list">
+        <div>
+          <dt>Desafio 33 dias</dt>
+          <dd>Confira o app uma vez por dia durante 33 dias e ganhe uma semana de Pro. Pode esquecer até 2 dias no caminho.</dd>
+        </div>
+        <div>
+          <dt>Histórico por dia</dt>
+          <dd>Toque na data e veja cada dia pintado pela nota. Cada hábito pesa igual, e dia sem uso não conta contra você.</dd>
+        </div>
+        <div>
+          <dt>Ideias pra testar</dt>
+          <dd>Acordar às 5h, 10 mil passos, primeira hora sem celular. Um toque e o hábito já está criado.</dd>
+        </div>
+        <div>
+          <dt>Aviso no início</dt>
+          <dd>Uma notificação quando a janela de um hábito abre. Liga e desliga em cada um.</dd>
+        </div>
+        <div>
+          <dt>Desfazer sem susto</dt>
+          <dd>Marcou sem querer? A barrinha de desfazer no app e a setinha no widget resolvem.</dd>
+        </div>
+        <div>
+          <dt>Backup na conta</dt>
+          <dd>Troque de celular sem perder nada. E dá pra copiar todos os seus dados quando quiser.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section plans" id="planos">
+    <div class="wrap">
+      <h2 data-split>Comece grátis. Fique se fizer sentido.</h2>
+
+      <div class="plans__grid">
+        <article class="plan">
+          <h3>Grátis</h3>
+          <p class="plan__price">R$ 0</p>
+          <ul>
+            <li>Até 4 hábitos</li>
+            <li>Todos os widgets e avisos</li>
+            <li>Metas de valor (R$, km, páginas)</li>
+            <li>Com conta: nuvem e versão web</li>
+            <li>Anúncio só se você quiser (libera +1 hábito)</li>
+          </ul>
+        </article>
+
+        <article class="plan">
+          <h3>Okno Pro</h3>
+          <p class="plan__price">R$ 49,90 <span>por ano, com 7 dias grátis</span></p>
+          <p class="plan__alt">Ou R$ 7,90 por mês, ou R$ 99,90 uma vez só.</p>
+          <ul>
+            <li>Hábitos ilimitados</li>
+            <li>Tudo do grátis, sem limite</li>
+            <li>Novidades do Pro inclusas</li>
+            <li>Nenhum anúncio</li>
+            <li>Apoia um app independente</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="plans__note">Cancele quando quiser pela loja. Se voltar pro grátis, nada se perde: os hábitos extras ficam arquivados.</p>
+    </div>
+  </section>
+
+  <section class="section privacy" id="privacidade">
+    <div class="wrap">
+      <h2 data-split>Seus hábitos são seus.</h2>
+
+      <div class="privacy__grid">
+        <div>
+          <h3>Só o necessário</h3>
+          <p>Hábitos, checks, nome e e-mail. Nada de localização, contatos ou fotos.</p>
+        </div>
+        <div>
+          <h3>Nada à venda</h3>
+          <p>Não vendemos dados. Conexões futuras, como saúde ou tempo de tela, só com a sua permissão.</p>
+        </div>
+        <div>
+          <h3>Apague quando quiser</h3>
+          <p>Exclua a conta e todos os dados pelo próprio app, a qualquer momento (LGPD).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq" id="duvidas">
+    <div class="wrap faq__grid">
+      <h2 data-split>Perguntas frequentes</h2>
+
+      <div class="faq__list">
+        <details>
+          <summary>Preciso abrir o app pra marcar?</summary>
+          <p>Não. O widget marca direto da tela inicial: toque na bolinha ou no botão. O app serve pra criar, editar e ver o histórico.</p>
+        </details>
+        <details>
+          <summary>O que acontece se eu passar do limite?</summary>
+          <p>No Limitar, o app registra (por exemplo 4/3) e mostra um "+1". Ele não bloqueia nem dá bronca. A ideia é você enxergar, não se sentir mal.</p>
+        </details>
+        <details>
+          <summary>Funciona sem internet?</summary>
+          <p>Sim. Tudo fica salvo no celular e o widget funciona offline. Com conta, os dados sincronizam quando a internet volta.</p>
+        </details>
+        <details>
+          <summary>Quanto custa?</summary>
+          <p>O grátis tem até 4 hábitos, com todos os widgets e avisos. O Pro libera hábitos ilimitados e tira os anúncios: R$ 7,90 por mês, R$ 49,90 por ano (com 7 dias grátis) ou R$ 99,90 uma vez só.</p>
+        </details>
+        <details>
+          <summary>Quando chega no iPhone?</summary>
+          <p>Depois do lançamento no Android. A mesma conta vai funcionar nos dois.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <p class="closing__line" data-split>Menos tela.<br>Mais do que importa.</p>
+      <div class="closing__actions">
+        <a class="btn" href="https://okno-efb22.web.app/app">Entrar na web</a>
+        <p>O Okno chega primeiro no Android, no Google Play. iPhone logo depois.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <a class="nav__brand" href="#topo" aria-label="Okno, voltar ao início">
+      <img src="/okno-check-x-preto.svg" alt="" width="28" height="28">
+      <span>okno</span>
+    </a>
+    <nav aria-label="Rodapé">
+      <a href="https://okno-efb22.web.app/privacidade">Privacidade</a>
+      <a href="https://okno-efb22.web.app/termos">Termos</a>
+      <a href="https://okno-efb22.web.app/excluir-conta">Excluir conta</a>
+      <a href="mailto:suporte.okno@gmail.com">suporte.okno@gmail.com</a>
+    </nav>
+    <p>© 2026 Okno</p>
+  </div>
+</footer>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
