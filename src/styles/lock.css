@@ -121,13 +121,3 @@
   color: var(--gray);
   font-size: 15px;
 }
-
-.alert--small {
-  display: inline-flex;
-  width: auto;
-  border-radius: 22px;
-}
-
-.alert--small > span {
-  display: grid;
-}

@@ -61,9 +61,3 @@
   border-right-color: var(--ink);
   transform: rotate(40deg);
 }
-
-.chip--big {
-  height: 52px;
-  padding-inline: 26px;
-  font-size: 18px;
-}
